@@ -8,7 +8,15 @@ type UserRepo struct {
 	DB *gorm.DB
 }
 
-func NewUserRepo(DB *gorm.DB) *UserRepo {
+type UserRepoMethod interface {
+	FindAll()
+	FindByPk()
+	Save()
+	Update()
+	Delete()
+}
+
+func NewUserRepo(DB *gorm.DB) UserRepoMethod {
 	return &UserRepo{DB: DB}
 }
 
